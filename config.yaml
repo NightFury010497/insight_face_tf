@@ -1,0 +1,41 @@
+# model params
+backbone_type: resnet_v2_m_50
+loss_type: arcface
+out_type: E
+
+image_size: 112
+embd_size: 512
+class_num: 85742
+
+
+# hyper params
+bn_decay: 0.9
+keep_prob: 0.4
+weight_decay: !!float 5e-4
+logits_scale: 64.0
+logits_margin: 0.5
+momentum: 0.9
+
+
+# run params
+val_bn_train: False
+augment_flag: True
+augment_margin: 16
+
+gpu_num: 1
+batch_size: 5
+epoch_num: 20
+step_per_epoch: 200
+val_freq: 20
+
+lr_steps: [40000, 60000, 80000]
+lr_values: [0.004, 0.002, 0.0012, 0.0004]
+
+
+# paths
+pretrained_model: '/content/model/config_ms1m_100_1006k/best-m-1006000'
+
+train_data: ['/content/data.tfrecord']
+val_data: {'agedb_30': '/content/faces_emore/agedb_30.bin', 'lfw': '/content/faces_emore/lfw.bin', 'cfp_ff': '/content/faces_emore/cplfw.bin', 'vgg2_fp': '/content/faces_emore/vgg2_fp.bin'}
+
+output_dir: './output'
